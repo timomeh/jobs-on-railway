@@ -16,9 +16,7 @@ const envSchema = z.object({
   RUNBOOKS_REPO: z.string().nonempty(),
 })
 
-let env: z.infer<typeof envSchema>
-
 // ensure env vars are configured
-env = envSchema.parse(process.env)
+const env = envSchema.parse(process.env)
 
 export { env }

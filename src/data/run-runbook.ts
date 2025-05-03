@@ -19,7 +19,7 @@ export const runRunbookService = async (serviceId: string) => {
     serviceInstanceDeployV2: string
   }
 
-  const deployRes = await railway.request<
+  await railway.request<
     DeployServiceResponse,
     { environmentId: string; serviceId: string }
   >(deployServiceMutation, {
