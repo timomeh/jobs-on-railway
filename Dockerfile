@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN --mount=type=cache,id=next-cache,target=/app/.next/cache \
+RUN --mount=type=cache,id=s/5b9892b4-1e04-42f3-ab25-6a6a545ab33c-/app/next/cache,target=/app/.next/cache \
     corepack enable pnpm && \
     pnpm run build
 
