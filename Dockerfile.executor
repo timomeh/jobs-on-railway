@@ -1,9 +1,16 @@
-FROM node:22-slim AS base
+# Prepare image
+FROM node:22-slim
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 COPY package.json ./
-RUN corepack enable && corepack prepare --activate
+RUN corepack enable
+
+# Install dependencies
 COPY package.json pnpm-lock.yaml* .npmrc* ./
 RUN pnpm install --frozen-lockfile
+
+# Copy files from repo
 COPY . .
-CMD ["pnpm", "pkg", "get", "version"]
+
+# Instead of this cmd, it will run the custom start command
+CMD ["echo", "placeholder for custom command"]
