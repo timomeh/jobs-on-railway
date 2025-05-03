@@ -18,6 +18,9 @@ export type DeploymentStatus =
   | 'SUCCESS'
   | 'WAITING'
 
+/**
+ * Returns a list of all runbook services with the most necessary data.
+ */
 export const listRunbooks = cache(async () => {
   const query = gql`
     query GetEnvironment($id: String!) {

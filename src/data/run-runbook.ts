@@ -2,9 +2,11 @@ import { railway } from '@/lib/railway-client'
 import { gql } from '@/lib/gql'
 import { env } from '@/lib/env'
 
+/**
+ * Runs a runbook service.
+ */
 export const runRunbookService = async (serviceId: string) => {
-  // create a new service for the runbook
-
+  // Trigger a new deployment. This effectively runs the runbook.
   const deployServiceMutation = gql`
     mutation DeployService($serviceId: String!, $environmentId: String!) {
       serviceInstanceDeployV2(
@@ -14,9 +16,10 @@ export const runRunbookService = async (serviceId: string) => {
     }
   `
 
+  type DeploymentId = string
   type DeployServiceResponse = {
-    // returns the deployment ID, could be nice for streaming logs, updating status, etc
-    serviceInstanceDeployV2: string
+    // the returned DeploymentId could be nice for streaming logs, updating the progress, etc
+    serviceInstanceDeployV2: DeploymentId
   }
 
   await railway.request<

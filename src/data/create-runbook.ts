@@ -2,9 +2,12 @@ import { railway } from '@/lib/railway-client'
 import { gql } from '@/lib/gql'
 import { env } from '@/lib/env'
 
+/**
+ * Creates a new service for a runbook and configures it to act as a runbook.
+ */
 export const createRunbookService = async (slug: string, command: string) => {
-  // create a new service for the runbook
-
+  // Create a new service for the runbook,
+  // connect it to the repo and specify a custom Dockerfile to run
   const createServiceMutation = gql`
     mutation CreateService(
       $name: String!
@@ -44,8 +47,23 @@ export const createRunbookService = async (slug: string, command: string) => {
 
   const createdServiceId = createRes.serviceCreate.id
 
-  // now, update the build settings for the runbook
-
+  // Update the builds settings of the service:
+  // - set restart policy to NEVER. it should only execute once.
+  // - configure the custom start command. this is the command to run as runbook.
+  // - set build command to a noop because no build task should be executed.
+  //
+  // TODO: "builder: RAILPACK" will automatically switch to dockerfile anyways,
+  // check if it can be removed
+  //
+  // TODO: Should the runbook command be the `buildCommand` instead of the
+  // `startCommand`? If the build can have access to other resources (should it?)
+  // then it could be a build command! But would that work with Docker?
+  // Using the `buildCommand` can improve how meaningful the DeploymentStatus is,
+  // because it seems like the status doesn't reflect if a service exited.
+  // It seems like "SUCCESS" will just mean that the service started, but
+  // wouldn't reflect if the runbook succeeded.
+  // If the runbook command is the buildCommand, "BUILDING" would mean that the
+  // runbook is still being executed, and "SUCCESS" actually means success.
   const updateServiceMutation = gql`
     mutation UpdateService(
       $serviceId: String!
@@ -59,7 +77,7 @@ export const createRunbookService = async (slug: string, command: string) => {
           restartPolicyType: NEVER
           startCommand: $startCommand
           builder: RAILPACK
-          buildCommand: "echo nope"
+          buildCommand: "echo nothing"
         }
       )
     }
