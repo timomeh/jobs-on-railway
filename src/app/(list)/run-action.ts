@@ -2,16 +2,14 @@
 
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
-import { actionClient } from '@/lib/server-action'
-import { runRunbookService } from '@/data/run-runbook'
 import { revalidatePath } from 'next/cache'
+import { actionClient } from '@/lib/server-action'
+import { runJob } from '@/data/jobs'
 
-const schema = zfd.formData({})
-
-export const runRunbookAction = actionClient
-  .schema(schema)
+export const runJobAction = actionClient
+  .schema(zfd.formData({}))
   .bindArgsSchemas<[serviceId: z.ZodString]>([z.string()])
   .action(async ({ bindArgsParsedInputs: [serviceId] }) => {
-    await runRunbookService(serviceId)
+    await runJob(serviceId)
     revalidatePath('/')
   })

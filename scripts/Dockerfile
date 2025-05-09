@@ -13,4 +13,4 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # Instead of this cmd, it will run the custom start command
-CMD ["echo", "placeholder for custom command"]
+CMD ["echo", "No start command defined"]

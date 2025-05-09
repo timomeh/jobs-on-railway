@@ -1,10 +1,30 @@
 @import 'tailwindcss';
 
+@plugin "@tailwindcss/forms";
+
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+}
+
+@custom-variant aria-invalid (&[aria-invalid="true"]);
+
+@theme {
+  --animate-outline-bounce: outline-bounce 0.3s;
+
+  @keyframes outline-bounce {
+    0%,
+    100% {
+      outline-offset: 4px;
+    }
+    50% {
+      outline-offset: 6px;
+    }
+  }
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased;
+
+  background: #13111c;
+  color: white;
 }
