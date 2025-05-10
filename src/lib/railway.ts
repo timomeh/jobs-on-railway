@@ -164,6 +164,7 @@ export async function listServices() {
               latestDeployment {
                 status
                 createdAt
+                deploymentStopped
               }
             }
           }
@@ -182,6 +183,7 @@ export async function listServices() {
             serviceId: string
             latestDeployment?: {
               status: DeploymentStatus
+              deploymentStopped: boolean
               createdAt: string
             }
           }

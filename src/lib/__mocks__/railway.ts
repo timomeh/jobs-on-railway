@@ -15,6 +15,7 @@ export const listServices = vi.fn(async () => {
       latestDeployment: {
         status: 'SUCCESS',
         createdAt: '2025-05-01T14:00:00.000Z',
+        deploymentStopped: true,
       },
     },
     {
@@ -24,6 +25,7 @@ export const listServices = vi.fn(async () => {
       latestDeployment: {
         status: 'BUILDING',
         createdAt: '2025-05-01T14:00:00.000Z',
+        deploymentStopped: true,
       },
     },
   ]

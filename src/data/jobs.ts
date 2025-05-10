@@ -44,7 +44,10 @@ export const listJobs = cache(async () => {
       name: service.serviceName.replace(/^job-/, ''),
       command: service.startCommand,
       id: service.serviceId,
-      status: mapJobStatus(service.latestDeployment?.status),
+      status: mapJobStatus(
+        service.latestDeployment?.status,
+        service.latestDeployment?.deploymentStopped,
+      ),
       lastRunAt: service.latestDeployment?.createdAt
         ? new Date(service.latestDeployment.createdAt)
         : null,
@@ -64,7 +67,7 @@ export const runJob = async (serviceId: string) => {
 
 type JobStatus = 'idle' | 'running'
 
-function mapJobStatus(serviceStatus?: DeploymentStatus) {
+function mapJobStatus(serviceStatus?: DeploymentStatus, stopped?: boolean) {
   if (!serviceStatus) return 'idle'
 
   const mapping: Record<DeploymentStatus, JobStatus> = {
@@ -83,8 +86,14 @@ function mapJobStatus(serviceStatus?: DeploymentStatus) {
     REMOVING: 'idle',
   }
 
-  const mappedStatus = mapping[serviceStatus]
+  let mappedStatus = mapping[serviceStatus]
   assert(mappedStatus)
+
+  // handle successful deployments which haven't yet stopped
+  // (those jobs are still running the actual command)
+  if (mappedStatus === 'idle' && !stopped) {
+    mappedStatus = 'running'
+  }
 
   return mappedStatus
 }

@@ -58,6 +58,7 @@ describe('listJobs', () => {
         latestDeployment: {
           status: 'SUCCESS',
           createdAt: '2025-05-01T14:00:00.000Z',
+          deploymentStopped: true,
         },
       },
       {
@@ -67,6 +68,7 @@ describe('listJobs', () => {
         latestDeployment: {
           status: 'BUILDING',
           createdAt: '2025-05-01T14:00:00.000Z',
+          deploymentStopped: true,
         },
       },
       {
@@ -76,6 +78,7 @@ describe('listJobs', () => {
         latestDeployment: {
           status: 'SUCCESS',
           createdAt: '2025-05-01T14:00:00.000Z',
+          deploymentStopped: true,
         },
       },
     ])
