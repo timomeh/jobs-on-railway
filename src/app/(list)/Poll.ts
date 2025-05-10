@@ -16,7 +16,6 @@ export function Poll({ interval = 5_000 }: Props) {
   useEffect(() => {
     function startPolling() {
       intervalId.current = setInterval(() => {
-        console.log('poll!')
         if (!document.hidden) {
           refresh()
         }
