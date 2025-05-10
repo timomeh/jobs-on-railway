@@ -1,7 +1,7 @@
 import { Job } from '@/data/jobs'
-import { RunButton } from './RunButton'
 import { SolidButton } from '../_comps/Button'
 import { LoadingLabel } from '../_comps/LoadingLabel'
+import { RunButton } from './RunButton'
 
 type Props = {
   job: Job

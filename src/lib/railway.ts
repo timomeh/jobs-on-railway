@@ -1,5 +1,5 @@
-import { env } from './env'
 import { GraphQLClient, gql } from 'graphql-request'
+import { env } from './env'
 
 const endpoint = 'https://backboard.railway.com/graphql/v2'
 const rw = new GraphQLClient(endpoint, {

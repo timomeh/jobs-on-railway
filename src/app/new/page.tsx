@@ -1,5 +1,6 @@
-import { ArrowLeftIcon } from 'lucide-react'
 import Link from 'next/link'
+import { ArrowLeftIcon } from 'lucide-react'
+
 import { CreateJobForm } from './CreateJobForm'
 
 export default function Page() {

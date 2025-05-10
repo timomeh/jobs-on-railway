@@ -1,5 +1,5 @@
-import { CircleAlertIcon } from 'lucide-react'
 import { JSX } from 'react'
+import { CircleAlertIcon } from 'lucide-react'
 
 type GroupProps = {
   children: React.ReactNode

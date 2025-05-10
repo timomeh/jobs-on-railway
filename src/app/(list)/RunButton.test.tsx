@@ -2,8 +2,8 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { revalidatePath } from 'next/cache'
 
-import { RunButton } from './RunButton'
 import { deployService } from '@/lib/railway'
+import { RunButton } from './RunButton'
 
 it('deploys the service on click and refreshes the page', async () => {
   const user = userEvent.setup()

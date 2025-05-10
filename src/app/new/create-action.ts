@@ -1,12 +1,13 @@
 'use server'
 
-import { actionClient, ActionError } from '@/lib/server-action'
-import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+import { z } from 'zod'
 import { zfd } from 'zod-form-data'
+
+import { actionClient, ActionError } from '@/lib/server-action'
 import { slugify } from '@/lib/slugify'
 import { createJob } from '@/data/jobs'
-import { redirect } from 'next/navigation'
 
 export const newJobAction = actionClient
   .schema(

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
 import Link from 'next/link'
-import { SolidButton } from './_comps/Button'
 import { PlusIcon } from 'lucide-react'
+
+import { SolidButton } from './_comps/Button'
+
+import './globals.css'
 
 const inter = Inter({
   variable: '--font-inter',
@@ -11,7 +13,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Jobs',
+  title: 'Jobs on Railway',
 }
 
 type Props = {

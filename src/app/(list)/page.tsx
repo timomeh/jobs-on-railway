@@ -1,5 +1,6 @@
 import { PlusIcon, SquareTerminalIcon } from 'lucide-react'
 import Link from 'next/link'
+
 import { listJobs } from '@/data/jobs'
 import { SolidButton } from '../_comps/Button'
 import { Poll } from './Poll'
