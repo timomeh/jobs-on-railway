@@ -3,11 +3,6 @@ import { listServices } from '@/lib/railway'
 
 import Page from './page'
 
-vi.mock('@/lib/railway')
-vi.mock('@/lib/env')
-vi.mock('server-only')
-vi.mock('next/navigation')
-
 describe('without jobs', () => {
   beforeEach(() => {
     vi.mocked(listServices).mockResolvedValue([])
@@ -15,18 +10,22 @@ describe('without jobs', () => {
 
   it('renders no list', async () => {
     render(await Page())
-    expect(screen.queryByRole('list')).toBeNull()
-    expect(screen.queryByRole('listitem')).toBeNull()
+    expect(screen.queryByRole('list')).not.toBeInTheDocument()
+    expect(screen.queryByRole('listitem')).not.toBeInTheDocument()
   })
 
   it('has a big link to create a new job', async () => {
     render(await Page())
-    expect(screen.getByRole('link', { name: /Create a new job/ })).toBeDefined()
+    expect(
+      screen.getByRole('link', { name: /Create a new job/ }),
+    ).toBeInTheDocument()
   })
 
   it('renders no button to add another job', async () => {
     render(await Page())
-    expect(screen.queryByRole('link', { name: /Add another job/ })).toBeNull()
+    expect(
+      screen.queryByRole('link', { name: /Add another job/ }),
+    ).not.toBeInTheDocument()
   })
 })
 
@@ -36,16 +35,16 @@ describe('with jobs', () => {
     expect(screen.getByRole('list')).toBeDefined()
     expect(screen.getAllByRole('listitem')).toHaveLength(2)
 
-    expect(screen.getAllByRole('listitem')[0].innerHTML).toContain(
-      'mock-service',
-    )
-    expect(screen.getAllByRole('listitem')[1].innerHTML).toContain(
+    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent('mock-service')
+    expect(screen.getAllByRole('listitem')[1]).toHaveTextContent(
       'mock-service-two',
     )
   })
 
   it('renders a button to add another job', async () => {
     render(await Page())
-    expect(screen.getByRole('link', { name: /Add another job/ })).toBeDefined()
+    expect(
+      screen.getByRole('link', { name: /Add another job/ }),
+    ).toBeInTheDocument()
   })
 })

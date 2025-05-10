@@ -2,10 +2,6 @@ import { render, screen } from '@testing-library/react'
 
 import { JobListItem } from './JobListItem'
 
-vi.mock('@/lib/railway')
-vi.mock('@/lib/env')
-vi.mock('server-only')
-
 const job = {
   name: 'mock-job',
   command: 'mock cmd',
@@ -19,7 +15,7 @@ describe('an idle job', () => {
 
   it('has a button to run the job', () => {
     render(<JobListItem job={idleJob} />)
-    expect(screen.getByRole('button', { name: 'Run' })).toBeDefined()
+    expect(screen.getByRole('button', { name: 'Run' })).toBeInTheDocument()
   })
 })
 
@@ -28,12 +24,16 @@ describe('a running job', () => {
 
   it('has no button to run the job', () => {
     render(<JobListItem job={runningJob} />)
-    expect(screen.queryByRole('button', { name: 'Run' })).toBeNull()
+    expect(
+      screen.queryByRole('button', { name: 'Run' }),
+    ).not.toBeInTheDocument()
   })
 
   it('shows the running status', () => {
     render(<JobListItem job={runningJob} />)
-    expect(screen.getByRole('button', { name: /Running job/ })).toBeDefined()
+    expect(
+      screen.getByRole('button', { name: /Running job/ }),
+    ).toBeInTheDocument()
   })
 })
 
@@ -42,7 +42,7 @@ describe('with a last run date', () => {
 
   it('shows the last run date formatted', () => {
     render(<JobListItem job={ranJob} />)
-    expect(screen.getByText('5/1/25, 4:00 PM')).toBeDefined()
+    expect(screen.getByText('5/1/25, 4:00 PM')).toBeInTheDocument()
   })
 })
 
@@ -51,6 +51,6 @@ describe('without a last run date', () => {
 
   it('shows that it never ran', () => {
     render(<JobListItem job={neverJob} />)
-    expect(screen.getByText('Never ran')).toBeDefined()
+    expect(screen.getByText('Never ran')).toBeInTheDocument()
   })
 })

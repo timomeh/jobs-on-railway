@@ -20,6 +20,7 @@ export function CreateJobForm() {
           type="text"
           name="jobName"
           id="jobName"
+          error={!!result.validationErrors?.fieldErrors.jobName}
           defaultValue={(input as FormData)?.get('jobName')?.toString() || ''}
         />
         <Input.Hint id="jobName">
@@ -38,6 +39,7 @@ export function CreateJobForm() {
           type="text"
           name="command"
           id="command"
+          error={!!result.validationErrors?.fieldErrors.command}
           defaultValue={(input as FormData)?.get('command')?.toString() || ''}
         />
         <Input.Hint id="command">
@@ -48,6 +50,16 @@ export function CreateJobForm() {
           {result.validationErrors?.fieldErrors.command}
         </Input.Error>
       </Input.Group>
+
+      {result.serverError && (
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="mt-2 text-sm text-red-400"
+        >
+          {result.serverError}
+        </p>
+      )}
 
       <div>
         <button type="submit" disabled={isPending}>

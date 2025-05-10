@@ -7,9 +7,6 @@ import {
 
 import { createJob, listJobs, runJob } from './jobs'
 
-vi.mock('@/lib/railway')
-vi.mock('@/lib/env')
-
 describe('createJob', () => {
   beforeEach(() => {
     vi.mocked(createService).mockResolvedValue('service-id-123')

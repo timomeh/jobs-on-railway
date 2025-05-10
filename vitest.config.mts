@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     restoreMocks: true,
+    setupFiles: ['/config/vitest-setup.ts'],
     globals: true, // automatically does a DOM cleanup after each test
   },
 })
