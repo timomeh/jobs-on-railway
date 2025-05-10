@@ -10,7 +10,8 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "job:example-primes": "tsx ./scripts/calc-primes.ts"
   },
   "dependencies": {
     "@sindresorhus/slugify": "2.2.1",
@@ -45,6 +46,7 @@
     "prettier-plugin-merge": "0.7.3",
     "prettier-plugin-tailwindcss": "0.6.11",
     "tailwindcss": "4.1.5",
+    "tsx": "4.19.4",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.1.3"
