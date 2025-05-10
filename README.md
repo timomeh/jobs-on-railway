@@ -14,7 +14,6 @@ Deploy this repo into your Railway project to create and manage jobs. Configure 
 
 **Warning:**
 - This is a proof of concept. Use on your own risk.
-- There is no authentication. Deploy behind an authenticated proxy.
 
 ## Contributing
 
