@@ -18,7 +18,7 @@ describe('without jobs', () => {
     render(await Page())
     expect(
       screen.getByRole('link', { name: /Create a new job/ }),
-    ).toBeInTheDocument()
+    ).toHaveAttribute('href', '/new')
   })
 
   it('renders no button to add another job', async () => {
@@ -45,6 +45,6 @@ describe('with jobs', () => {
     render(await Page())
     expect(
       screen.getByRole('link', { name: /Add another job/ }),
-    ).toBeInTheDocument()
+    ).toHaveAttribute('href', '/new')
   })
 })
