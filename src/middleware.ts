@@ -11,9 +11,9 @@ const PASS = process.env.AUTH_PASS
 // during the trial period.
 
 export function middleware(req: NextRequest) {
-  const auth = req.headers.get('authorization')
+  const authHeader = req.headers.get('authorization')
 
-  if (!auth || !auth.startsWith('Basic ')) {
+  if (!authHeader || !authHeader.startsWith('Basic ')) {
     return new NextResponse('Unauthorized', {
       status: 401,
       headers: {
@@ -22,8 +22,8 @@ export function middleware(req: NextRequest) {
     })
   }
 
-  const b64 = auth.slice(6)
-  const [user, pass] = atob(b64).split(':')
+  const base64 = authHeader.replace('Basic ', '')
+  const [user, pass] = atob(base64).split(':')
 
   if (user !== USER || pass !== PASS) {
     return new NextResponse('Forbidden', { status: 403 })
