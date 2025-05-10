@@ -12,6 +12,10 @@ Features:
 
 Deploy this repo into your Railway project to create and manage jobs. Configure the required environment variables (see `.env`).
 
+**Warning:**
+- This is a proof of concept. Use on your own risk.
+- There is no authentication. Deploy behind an authenticated proxy.
+
 ## Contributing
 
 This is a [Next.js][nextjs] app. You need:
