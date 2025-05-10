@@ -5,3 +5,5 @@ vi.mock('@/lib/env')
 vi.mock('next/cache')
 vi.mock('next/navigation')
 vi.mock('server-only')
+
+process.env.TZ = 'UTC'

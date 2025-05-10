@@ -42,7 +42,7 @@ describe('with a last run date', () => {
 
   it('shows the last run date formatted', () => {
     render(<JobListItem job={ranJob} />)
-    expect(screen.getByText('5/1/25, 4:00 PM')).toBeInTheDocument()
+    expect(screen.getByText('5/1/25, 2:00 PM')).toBeInTheDocument()
   })
 })
 
