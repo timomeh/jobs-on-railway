@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# One-off jobs on Railway
 
-## Getting Started
+A small app to manage and run one-off jobs in your Railway project.
 
-First, run the development server:
+Features:
+- Create one-off jobs
+- Automatically configures a new service as a one-off job
+- Run one-off jobs with a single click
+- Runs jobs with a custom dockerfile (see `scripts/Dockerfile`)
+
+## Deploy
+
+Deploy this repo into your Railway project to create and manage jobs. Configure the required environment variables (see `.env`).
+
+## Contributing
+
+This is a [Next.js][nextjs] app. You need:
+
+- Node.js
+- pnpm (via corepack)
+
+First install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The duplicate the `.env` file to `.env.local` and fill in the values.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Finally, run the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev
+```
 
-## Learn More
+Run tests with [vitest][vitest]:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[nextjs]: https://nextjs.org/docs/app/
+[vitest]: https://vitest.dev/guide/
